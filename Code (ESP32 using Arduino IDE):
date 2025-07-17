@@ -1,0 +1,19 @@
+String command = "";
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(2, OUTPUT); // Connect LED or relay to pin 2
+}
+
+void loop() {
+  if (Serial.available()) {
+    command = Serial.readStringUntil('\n');
+    command.trim();
+
+    if (command == "on") {
+      digitalWrite(2, HIGH); // Turn ON LED
+    } else if (command == "off") {
+      digitalWrite(2, LOW); // Turn OFF LED
+    }
+  }
+}
